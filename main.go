@@ -26,7 +26,7 @@ func CheckStatus(w http.ResponseWriter, r *http.Request) {
 
 func Status() {
 	for {
-		time.Sleep(5 * time.Second)
+		time.Sleep(60 * time.Second)
 		var wg sync.WaitGroup
 
 		for key := range mp {
@@ -111,7 +111,3 @@ func main() {
 	http.HandleFunc("/websites", getStatus)
 	http.ListenAndServe("127.0.0.1:3000", nil)
 }
-
-// curl -X POST -H "Content-Type: application/json" -d '{"websites":["www.google.com","www.bing.com","www.reallyfaketaxi.com","www.notarealwebsite.com","www.yahoo.com"]}' http://localhost:3000/post
-// curl http://localhost:3000/Check
-// curl "http://localhost:3000/websites?name=www.google.com"
